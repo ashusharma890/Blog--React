@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Navbar from "./components/Navbar";
+import Post from "./components/Post";
+import React, { useState } from "react";
+import Posts from "./components/Posts";
+import { BlogContext } from "./Contexts/BlogContext";
 
 function App() {
+  const [showBlog, setShowBlog] = useState(false);
+  const [blogPost, setBlogPost] = useState("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="App">
+        <Navbar />
+        <BlogContext.Provider value={{ blogPost, setBlogPost, setShowBlog }}>
+          {showBlog ? <Posts /> : <Post />}
+        </BlogContext.Provider>
+      </div>
+    </>
   );
 }
 
