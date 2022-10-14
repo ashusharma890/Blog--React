@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react";
 import { BlogContext } from "../Contexts/BlogContext";
 
 const Post = () => {
-  const { setBlogPost, setShowBlog, blogPost } = useContext(BlogContext);
+  const { setBlogPost, setShowBlog, blogPost, setBlogArr } =
+    useContext(BlogContext);
 
   const [input, setInput] = useState("");
 
@@ -12,9 +13,8 @@ const Post = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    {
-      setBlogPost(input);
-    }
+    setBlogPost(input);
+    setBlogArr((prev) => [...prev, input]);
     setInput("");
   };
   console.log(blogPost);
